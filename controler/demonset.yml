@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Demonset
+metadata: 
+ name: nginx-demonset
+spec:
+  templete:
+   metadata:
+    labels:
+     app: my-nginx-demonset
+   spec:
+    containers:
+     - name: nginx
+       image: nginx:1.22.1
+       ports:
+        - containerPort: 80
+  
+  selector:
+   matchLabels: 
+    app: my-nginx-demonset
+     
