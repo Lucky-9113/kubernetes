@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluserip-pod
+spec:
+  selector:
+    matchLabels:
+      app: clusterip-label
+  template:
+    metadata:
+      name: clusterip-temp
+      labels:
+        app: clusterip-label
+    spec:
+      containers:
+      - name: clusterip-containers
+        image: ngins:1.22.1
+        ports:
+        - containerPort: 80
+
+
+---
+apiVersion: v1
+kind: service
+metadata:
+  name: clusterip-service
+spec:
+selector:
+  app: clusterip-label
+ports:
+- name: http
+  port: 30002
+  targetPort: 80
+
+
+
+
+
+
+
+
+
+
