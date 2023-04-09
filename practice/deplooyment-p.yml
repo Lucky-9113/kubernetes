@@ -6,10 +6,10 @@ spec:
   selector:
     matchLabels:
       app: my-nginx
+  replicas: 4
   template:
-    replicas: 2
     metadata:
-      name: nginx
+      name: nginx-temp-p
       labels:
         app: my-nginx
     spec:
@@ -18,4 +18,9 @@ spec:
         image: nginx:1.22.1
         ports:
         - containerPort: 80
+
+
+
+
+
 
