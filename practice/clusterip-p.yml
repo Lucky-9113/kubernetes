@@ -25,12 +25,12 @@ kind: Service
 metadata:
   name: clusterip-service
 spec:
-selector:
-  app: clusterip-label
-ports:
-- name: http
-  port: 30002
-  targetPort: 80
+  selector:
+    app: clusterip-label
+  ports:
+  - name: http
+    port: 30002
+    targetPort: 80
 
 
 
