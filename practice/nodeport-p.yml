@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeport-pod
+spec:
+  selector:
+    matchLabels:
+      app: nodeport-label
+  replicas: 2
+  template:
+    metadata:
+      name: nodeport-temp
+      labels:
+        app: nodeport-label
+    spec:
+      containers:
+      - name: nodeport-containers
+        image: nginx:1.22.1
+        ports:
+        - containerPort: 80
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeport-service
+spec:
+  selector:
+    app: nodeport-label
+  ports:
+  - port: 30002
+    name: http
+    targetPort: 80
+    nodeport: 30080
+
